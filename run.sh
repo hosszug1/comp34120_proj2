@@ -15,4 +15,4 @@ set +f
 sleep 2
 rm -rf classes/*
 javac -d classes/ src/*
-java $CLASSPATH $OPTIONS SimpleLeader
+java $CLASSPATH $OPTIONS SimpleLeader &
