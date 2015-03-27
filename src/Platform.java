@@ -29,4 +29,4 @@ public interface Platform
 	public void log(final PlayerType p_type,
 		final String p_text)
 		throws RemoteException;
-}
+} // interface Platform

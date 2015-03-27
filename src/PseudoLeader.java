@@ -28,7 +28,7 @@ final class PseudoLeader
 		/* The first parameter *MUST* be PlayerType.LEADER, you can change
 		 * the second parameter, the name of the leader, such as "My Leader" */
 		super(PlayerType.LEADER, "Pseudo Leader");
-	}
+	} // PseudoLeader
 
 	/**
 	 * You may want to delete this method if you don't want modify
@@ -43,7 +43,7 @@ final class PseudoLeader
 	{
 		super.checkConnection();
 		//TO DO: delete the line above and put your own code here
-	}
+	} // checkConnection
 
 	/**
 	 * You may want to delete this method if you don't want the platform
@@ -57,7 +57,7 @@ final class PseudoLeader
 	{
 		super.goodbye();
 		//TO DO: delete the line above and put your own exit code here
-	}
+	} // goodbye
 
 	/**
 	 * You may want to delete this method if you don't want to do any
@@ -72,7 +72,7 @@ final class PseudoLeader
 	{
 		super.startSimulation(p_steps);
 		//TO DO: delete the line above and put your own initialization code here
-	}
+	} // startSimulation
 
 	/**
 	 * You may want to delete this method if you don't want to do any
@@ -86,7 +86,7 @@ final class PseudoLeader
 	{
 		super.endSimulation();
 		//TO DO: delete the line above and put your own finalization code here
-	}
+	} // endSimulation
 
 	/**
 	 * To inform this instance to proceed to a new simulation day
@@ -108,5 +108,5 @@ final class PseudoLeader
 		 * Submit your new price, and end your phase
 		 * m_platformStub.publishPrice(m_type, l_newPrice);
 		 */
-	}
-}
+	} // proceedNewDay
+} // class PseudoLeader

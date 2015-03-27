@@ -20,14 +20,14 @@ final class SimpleLeader
 		throws RemoteException, NotBoundException
 	{
 		super(PlayerType.LEADER, "Simple Leader");
-	}
+	} // SimpleLeader
 
 	@Override
 	public void goodbye()
 		throws RemoteException
 	{
 		ExitTask.exit(500);
-	}
+	} // goodbye
 
 	/**
 	 * To inform this instance to proceed to a new simulation day
@@ -39,7 +39,7 @@ final class SimpleLeader
 		throws RemoteException
 	{
 		m_platformStub.publishPrice(m_type, genPrice(1.8f, 0.05f));
-	}
+	} // proceedNewDay
 
 	/**
 	 * Generate a random price based Gaussian distribution. The mean is p_mean,
@@ -51,13 +51,13 @@ final class SimpleLeader
 	private float genPrice(final float p_mean, final float p_diversity)
 	{
 		return (float) (p_mean + m_randomizer.nextGaussian() * p_diversity);
-	}
+	} // genPrice
 
 	public static void main(final String[] p_args)
 		throws RemoteException, NotBoundException
 	{
 		new SimpleLeader();
-	}
+	} // main
 
 	/**
 	 * The task used to automatically exit the leader process
@@ -69,12 +69,12 @@ final class SimpleLeader
 		static void exit(final long p_delay)
 		{
 			(new Timer()).schedule(new ExitTask(), p_delay);
-		}
+		} // exit
 		
 		@Override
 		public void run()
 		{
 			System.exit(0);
-		}
-	}
-}
+		} // run
+	} // class ExitTask
+} // class SimpleLeader

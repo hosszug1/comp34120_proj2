@@ -14,5 +14,6 @@ java $CLASSPATH $OPTIONS comp34120.ex2.Main &
 set +f
 sleep 2
 rm -rf classes/*
-javac -d classes/ src/*
+javac src/*.java
+mv src/*.class classes/
 java $CLASSPATH $OPTIONS SimpleLeader &

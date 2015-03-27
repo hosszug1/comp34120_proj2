@@ -25,7 +25,7 @@ public abstract class PlayerImpl
 		m_type = p_type;
 		registerRMI();
 		registerPlatform(p_displayName);
-	}
+	} // PlayerImpl
 
 	/**
 	 * Register this instance to RMI registry
@@ -37,7 +37,7 @@ public abstract class PlayerImpl
 		final Player l_playerStub = (Player) UnicastRemoteObject.exportObject(this, 0);
 		final Registry l_registry = LocateRegistry.getRegistry();
 		l_registry.rebind(m_type.toString(), l_playerStub);
-	}
+	} // registerRMI
 
 	/**
 	 * Get the stub of the platform, then call its initialization method to make
@@ -52,7 +52,7 @@ public abstract class PlayerImpl
 		final Registry l_registry = LocateRegistry.getRegistry();
 		m_platformStub = (Platform) l_registry.lookup("Platform");
 		m_platformStub.registerPlayer(m_type, p_displayName);
-	}
+	} // registerPlatform
 
 	/**
 	 * To check the availability of this player
@@ -72,7 +72,7 @@ public abstract class PlayerImpl
 		throws RemoteException
 	{
 		m_platformStub.log(m_type, "startSimulation(): Not supported yet.");
-	}
+	} // startSimulation
 
 	/**
 	 * To inform this instance the end of the simulation
@@ -83,7 +83,7 @@ public abstract class PlayerImpl
 		throws RemoteException
 	{
 		m_platformStub.log(m_type, "endSimulation(): Not supported yet.");
-	}
+	} // endSimulation
 
 	/**
 	 * To inform this instance the end of the session
@@ -94,5 +94,5 @@ public abstract class PlayerImpl
 		throws RemoteException
 	{
 		m_platformStub.log(m_type, "goodbye(): Not supported yet.");
-	}
-}
+	} // goodbye
+} // class PlayerImpl

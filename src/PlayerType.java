@@ -10,4 +10,4 @@ public enum PlayerType
 	FOLLOWER;
 
 	public static final PlayerType[] s_playerTypes = PlayerType.values();
-}
+} // enum PlayerType
