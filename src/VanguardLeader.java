@@ -65,16 +65,26 @@ final class VanguardLeader
 	public void proceedNewDay(int p_date)
 		throws RemoteException
 	{
-		/*
-		 * Check for new price
-		 * Record l_newRecord = m_platformStub.query(m_type, p_date);
-		 *
-		 * Your own math model to compute the price here
-		 * ...
-		 * float l_newPrice = ....
-		 *
-		 * Submit your new price, and end your phase
-		 * m_platformStub.publishPrice(m_type, l_newPrice);
-		 */
+		// Check for new price.
+		Record l_newRecord = m_platformStub.query(m_type, p_date);
+		
+		// Calculate the new price.
+		float l_newPrice = getPrice();
+		
+		// Submit the new price, and end the phase.
+		m_platformStub.publishPrice(m_type, l_newPrice);
 	} // proceedNewDay
+
+	private float getPrice()
+	{
+		float price = 0.0;
+		// TODO: Calculate the new price based on history.
+
+		// Get reaction function of the follower by doing regression on the history (from day 1 up to current day).
+
+		// Get the price from the strategy/price space that has global maximum profit.
+
+		return price;
+
+	} // getPrice
 } // class VanguardLeader
