@@ -69,7 +69,7 @@ final class VanguardLeader
 		Record l_newRecord = m_platformStub.query(m_type, p_date);
 		
 		// Calculate the new price.
-		float l_newPrice = getPrice();
+		float l_newPrice = getPrice(l_newRecord);
 		
 		// Submit the new price, and end the phase.
 		m_platformStub.publishPrice(m_type, l_newPrice);
