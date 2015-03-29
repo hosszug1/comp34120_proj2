@@ -27,6 +27,13 @@ final class VanguardLeader
 		super(PlayerType.LEADER, "Vanguard Leader");
 	} // VanguardLeader
 
+	@Override
+	public void goodbye()
+		throws RemoteException
+	{
+		ExitTask.exit(500);
+	} // goodbye
+
 	/**
 	 * You may want to delete this method if you don't want to do any
 	 * initialization
@@ -39,7 +46,6 @@ final class VanguardLeader
 		throws RemoteException
 	{
 		super.startSimulation(p_steps);
-		//TO DO: delete the line above and put your own initialization code here
 	} // startSimulation
 
 	/**
@@ -53,7 +59,8 @@ final class VanguardLeader
 		throws RemoteException
 	{
 		super.endSimulation();
-		//TO DO: delete the line above and put your own finalization code here
+		// Print the total profit gained by the Leader.
+		System.out.println("Total profit: " + getTotalProfit);
 	} // endSimulation
 
 	/**
@@ -69,10 +76,11 @@ final class VanguardLeader
 		Record l_newRecord = m_platformStub.query(m_type, p_date);
 		
 		// Calculate the new price.
-		float l_newPrice = getPrice();
+		float l_newPrice = getPrice(l_newRecord);
 		
 		// Submit the new price, and end the phase.
 		m_platformStub.publishPrice(m_type, l_newPrice);
+
 	} // proceedNewDay
 
 	private float getPrice()
@@ -87,4 +95,22 @@ final class VanguardLeader
 		return price;
 
 	} // getPrice
+
+	private double getTotalProfit()
+		throws RemoteException
+	{
+		// The total profit gained by the Leader during the 30 days of simulation.
+		double totalProfit = 0.0;
+
+		// Loop through the 30 days and calculate profit.
+		for (int i = 101; i <= 130; i++)
+		{
+			Record record = m_platformStub.query(m_type, i);
+			// Update total profit gained so far.
+			totalProfit += (record.m_leaderPrice - 1) * (2 - record.m_leaderPrice + 0.3 * record.m_followerPrice);
+		} // for
+
+		return totalProfit;
+	} // getTotalProfit
+
 } // class VanguardLeader
