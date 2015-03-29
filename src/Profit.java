@@ -16,9 +16,9 @@ public class Profit
 		return this.a + this.b * leaderPrice;
 	} // followerEstimate
 
-	public float globalMaximum() 
+	public double globalMaximum() 
 	{
-		return (float) ((2.7 + 0.3 * this.a) / (2.0 - 0.6 * this.b));
+		return (double) ((2.7 + 0.3 * this.a) / (2.0 - 0.6 * this.b));
 	} // globalMaximum
 
 } // class Profit
