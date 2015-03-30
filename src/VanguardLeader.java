@@ -1,7 +1,9 @@
 import comp34120.ex2.PlayerImpl;
 import comp34120.ex2.PlayerType;
+import comp34120.ex2.Record;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 /**
  * Leader bot for the Stackelberg game by team Vanguard.
@@ -31,7 +33,7 @@ final class VanguardLeader
 	public void goodbye()
 		throws RemoteException
 	{
-		ExitTask.exit(500);
+		super.goodbye();
 	} // goodbye
 
 	/**
@@ -60,7 +62,7 @@ final class VanguardLeader
 	{
 		super.endSimulation();
 		// Print the total profit gained by the Leader.
-		System.out.println("Total profit: " + getTotalProfit);
+		System.out.println("Total profit: " + getTotalProfit());
 	} // endSimulation
 
 	/**
@@ -76,30 +78,37 @@ final class VanguardLeader
 		Record l_newRecord = m_platformStub.query(m_type, p_date);
 		
 		// Calculate the new price.
-		float l_newPrice = getPrice(l_newRecord);
+		float l_newPrice = getPrice(p_date);
 		
 		// Submit the new price, and end the phase.
 		m_platformStub.publishPrice(m_type, l_newPrice);
-
 	} // proceedNewDay
 
-	private float getPrice()
-	{
-		float price = 0.0;
-		// TODO: Calculate the new price based on history.
 
-		// Get reaction function of the follower by doing regression on the history (from day 1 up to current day).
+	// Get the price for the new day.
+	private float getPrice(int p_date)
+	{
+		// Get reaction function of the follower by doing regression on the history.
+		// ----------------------------------------------------------------------------
+		FollowerReaction newReaction = new FollowerReaction(getAllRecords(p_date));
+
+		// Regression parameter - represents the number of days to look at.
+		int windowSize = 50;
+		// Linear regression.
+		newReaction.doLinearRegression();
 
 		// Get the price from the strategy/price space that has global maximum profit.
+		// ----------------------------------------------------------------------------
+		float price = (float) newReaction.findBestStrategy();
 
 		return price;
-
 	} // getPrice
 
+
+	// Method that returns the total profit gained over the 30 days of simulation.
 	private double getTotalProfit()
 		throws RemoteException
 	{
-		// The total profit gained by the Leader during the 30 days of simulation.
 		double totalProfit = 0.0;
 
 		// Loop through the 30 days and calculate profit.
@@ -112,5 +121,20 @@ final class VanguardLeader
 
 		return totalProfit;
 	} // getTotalProfit
+
+
+	// Method to get all the records up this current date.
+	private ArrayList<Record> getAllRecords(int currentDay)
+		throws RemoteException
+	{
+		ArrayList<Record> records = new ArrayList();
+
+		for (int i = 1; i < currentDay; i++)
+		{
+			records.add(m_platformStub.query(m_type, i));
+		} // for
+		
+		return records;
+	} // getAllRecords
 
 } // class VanguardLeader
