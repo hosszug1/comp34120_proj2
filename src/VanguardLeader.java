@@ -84,16 +84,15 @@ final class VanguardLeader
 		m_platformStub.publishPrice(m_type, l_newPrice);
 	} // proceedNewDay
 
-
 	// Get the price for the new day.
 	private float getPrice(int p_date)
 	{
 		// Get reaction function of the follower by doing regression on the history.
 		// ----------------------------------------------------------------------------
-		FollowerReaction newReaction = new FollowerReaction(getAllRecords(p_date));
-
 		// Regression parameter - represents the number of days to look at.
-		int windowSize = 50;
+		int numOfDays = 50;
+		FollowerReaction newReaction = new FollowerReaction(getRecords(p_date, numOfDays));
+
 		// Linear regression.
 		newReaction.doLinearRegression();
 
@@ -103,7 +102,6 @@ final class VanguardLeader
 
 		return price;
 	} // getPrice
-
 
 	// Method that returns the total profit gained over the 30 days of simulation.
 	private double getTotalProfit()
@@ -122,14 +120,13 @@ final class VanguardLeader
 		return totalProfit;
 	} // getTotalProfit
 
-
 	// Method to get all the records up this current date.
-	private ArrayList<Record> getAllRecords(int currentDay)
+	private ArrayList<Record> getRecords(int currentDay, int totalDays)
 		throws RemoteException
 	{
 		ArrayList<Record> records = new ArrayList();
 
-		for (int i = 1; i < currentDay; i++)
+		for (int i = currentDay - totalDays; i < currentDay; i++)
 		{
 			records.add(m_platformStub.query(m_type, i));
 		} // for

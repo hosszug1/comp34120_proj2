@@ -11,7 +11,6 @@ public class FollowerReaction
 	// ArrayList to hold the records of the days (will contain leader & follower prices).
 	private ArrayList<Record> records;
 
-	
 	// Constructor.
 	public FollowerReaction(ArrayList<Record> records)
 	{
@@ -20,6 +19,11 @@ public class FollowerReaction
 		theta1 = 1.0;
 	} // FollowerReaction
 
+	// Update existing records array with a new set.
+	public void updateRecords(ArrayList<Records> records)
+	{
+		this.records = records;
+	} // updateRecords
 
 	// Method that estimate theta0 and theta1 using linear regression
 	// and updates the variables.
@@ -31,13 +35,11 @@ public class FollowerReaction
 		// theta1 = newValue;
 	} // doLinearRegression
 
-
 	// Method that returns the estimate of the follower.
 	public double getFollowerReaction(double price)
 	{
 		return theta0 + theta1 * price;
 	} // getFollowerReaction
-
 
 	// Method that retuns best strategy for leader based on follower reaction.
 	public double findBestStrategy()
