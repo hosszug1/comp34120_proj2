@@ -7,7 +7,7 @@ else
 fi   
 
 set -f
-CLASSPATH='-cp classes/:lib/*'
+CLASSPATH='-cp classes/:lib/*:'
 OPTIONS=-Djava.rmi.server.hostname=127.0.0.1
 
 java $CLASSPATH $OPTIONS comp34120.ex2.Main &
