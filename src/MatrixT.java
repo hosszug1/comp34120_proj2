@@ -1,4 +1,4 @@
-public class Matrix {
+public class MatrixT {
 
     // return a random m-by-n matrix with values between 0 and 1
     public static double[][] random(int m, int n) {

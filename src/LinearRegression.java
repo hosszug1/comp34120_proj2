@@ -6,7 +6,7 @@ public class LinearRegression {
   public double[] priceFollower;
   public double[] theta;
   
-  public LinearRegression(int numberOfDays, int numberOfIterations, double learningRate) {
+  public LinearRegression(int numberOfDays, int numberOfIterations, double learningRate, double[] priceLeader, double[] priceFollower) {
     this.numberOfDays = numberOfDays;
     this.numberOfIterations = numberOfIterations;
     this.learningRate = learningRate;
@@ -17,13 +17,22 @@ public class LinearRegression {
 
     //prepare price matrices
     this.priceLeader = new double[numberOfDays][2];
-    this.priceFollower = new double[numberOfDays];
+    // this.priceFollower = new double[numberOfDays];
+
+    // this.priceLeader = priceLeader;
+    this.priceFollower = priceFollower;
+
+    for (int i = 0; i < numberOfDays; i++) {
+      this.priceLeader[i][0] = 1.0;
+      this.priceLeader[i][1] = priceLeader[i];
+    }
+
   }
 
-  public void doRegression() {
-    getPriceData();
+  public double[] doRegression() {
+    // getPriceData();
 
-    double j;
+    // double[] j = new double[2];
 
     //this is the initial cost
     //at this point theta is (0,0) and the hypothesis will be 0
@@ -31,8 +40,9 @@ public class LinearRegression {
     // j = computeCost(this.priceLeader, this.priceFollower, this.theta);
     this.theta = gradientDescent(this.priceLeader, this.priceFollower, this.theta, this.learningRate, this.numberOfIterations);
 
-    System.out.println("theta0 : " + this.theta[0] + " theta1 : " + this.theta[1]);
+    // System.out.println("theta0 : " + this.theta[0] + " theta1 : " + this.theta[1]);
 
+    return this.theta;
 
   }
 
@@ -266,8 +276,8 @@ public class LinearRegression {
     double[] squaredErrors = new double[this.numberOfDays];
 
     //estimate the follower's price using theta0 and theta1
-    hypothesis = Matrix.multiply(x, theta);
-    squaredErrors = Matrix.subtract(hypothesis, y);
+    hypothesis = MatrixT.multiply(x, theta);
+    squaredErrors = MatrixT.subtract(hypothesis, y);
     //matrix multiplication between x and theta
     for (int i = 0; i<this.numberOfDays; i++) {
       // hypothesis[i] = x[i][0] * theta[0] + x[i][1] * theta[1];
@@ -296,14 +306,14 @@ public class LinearRegression {
     double[] hypothesis = new double[this.numberOfDays];
     double[] diffHY = new double[this.numberOfDays];
     double[] xTransXdiffHY = new double[this.numberOfDays];
-    double[][] xTranspose = Matrix.transpose(x);
+    double[][] xTranspose = MatrixT.transpose(x);
 
     for (int i=0; i<numberOfIterations; i++) {
   
-      hypothesis = Matrix.multiply(x, theta);
-      diffHY = Matrix.subtract(hypothesis, y);
-      xTransXdiffHY = Matrix.multiply(xTranspose, diffHY);
-      newThetas = Matrix.subtract(newThetas, Matrix.multiply(xTransXdiffHY, learningRate * (1.0 / m)));
+      hypothesis = MatrixT.multiply(x, theta);
+      diffHY = MatrixT.subtract(hypothesis, y);
+      xTransXdiffHY = MatrixT.multiply(xTranspose, diffHY);
+      newThetas = MatrixT.subtract(newThetas, MatrixT.multiply(xTransXdiffHY, learningRate * (1.0 / m)));
 
     }
 
