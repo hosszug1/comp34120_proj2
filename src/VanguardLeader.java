@@ -85,12 +85,13 @@ final class VanguardLeader
 	} // proceedNewDay
 
 	// Get the price for the new day.
-	private float getPrice(int p_date)
+	private float getPrice(int p_date) throws RemoteException
 	{
 		// Get reaction function of the follower by doing regression on the history.
 		// ----------------------------------------------------------------------------
 		// Regression parameter - represents the number of days to look at.
 		int numOfDays = 50;
+		//100, 50
 		FollowerReaction newReaction = new FollowerReaction(getRecords(p_date, numOfDays));
 
 		// Linear regression.

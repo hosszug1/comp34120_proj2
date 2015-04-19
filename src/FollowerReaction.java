@@ -20,7 +20,7 @@ public class FollowerReaction
 	} // FollowerReaction
 
 	// Update existing records array with a new set.
-	public void updateRecords(ArrayList<Records> records)
+	public void updateRecords(ArrayList<Record> records)
 	{
 		this.records = records;
 	} // updateRecords
@@ -29,10 +29,24 @@ public class FollowerReaction
 	// and updates the variables.
 	public void doLinearRegression()
 	{
+		int numberOfDays = this.records.size();
+		double[] priceLeader = new double[numberOfDays];
+		double[] priceFollower = new double[numberOfDays];
+		int i = 0;
+		for (Record record : this.records) {
+			priceLeader[i] = record.m_leaderPrice;
+			priceFollower[i] = record.m_followerPrice;
+		}
+
+		LinearRegression lr = new LinearRegression(numberOfDays,1500, 0.01, priceLeader, priceFollower);
+      	double[] thetas = new double[2];
+      	thetas = lr.doRegression();
 		// ... all the mathematics here.
 
 		// theta0 = newValue;
 		// theta1 = newValue;
+		this.theta0 = thetas[0];
+		this.theta1 = thetas[1];
 	} // doLinearRegression
 
 	// Method that returns the estimate of the follower.
