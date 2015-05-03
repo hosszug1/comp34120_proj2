@@ -25,7 +25,7 @@ public class FollowerReaction
 		this.records = records;
 	} // updateRecords
 
-	// Method that estimate theta0 and theta1 using linear regression
+	// Method that estimates theta0 and theta1 using linear regression
 	// and updates the variables.
 	public void doLinearRegression()
 	{
@@ -33,18 +33,16 @@ public class FollowerReaction
 		double[] priceLeader = new double[numberOfDays];
 		double[] priceFollower = new double[numberOfDays];
 		int i = 0;
-		for (Record record : this.records) {
+		for (Record record : this.records)
+		{
 			priceLeader[i] = record.m_leaderPrice;
 			priceFollower[i] = record.m_followerPrice;
 		}
 
-		LinearRegression lr = new LinearRegression(numberOfDays,1500, 0.01, priceLeader, priceFollower);
+		LinearRegression lr = new LinearRegression(numberOfDays, 1500, 0.01, priceLeader, priceFollower);
       	double[] thetas = new double[2];
       	thetas = lr.doRegression();
-		// ... all the mathematics here.
 
-		// theta0 = newValue;
-		// theta1 = newValue;
 		this.theta0 = thetas[0];
 		this.theta1 = thetas[1];
 	} // doLinearRegression
