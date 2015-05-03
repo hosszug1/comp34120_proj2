@@ -56,7 +56,8 @@ public class FollowerReaction
 	// Method that retuns best strategy for leader based on follower reaction.
 	public double findBestStrategy()
 	{
-		return (2.7 + 0.3 * theta0) / (2.0 - 0.6 * theta1);
+		// return (2.7 + 0.3 * theta0) / (2.0 - 0.6 * theta1);
+		return (3 + 0.3 * theta0 - 0.3 * theta1) / (2.0 - 0.6 * theta1);
 	} // findBestStrategy()
 
 } // class FollowerReaction
