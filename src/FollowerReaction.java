@@ -39,7 +39,7 @@ public class FollowerReaction
 			priceFollower[i] = record.m_followerPrice;
 		}
 
-		LinearRegression lr = new LinearRegression(numberOfDays, 1500, 0.01, priceLeader, priceFollower);
+		LinearRegression lr = new LinearRegression(numberOfDays, 1000, 0.01, priceLeader, priceFollower);
       	double[] thetas = new double[2];
       	thetas = lr.doRegression();
 

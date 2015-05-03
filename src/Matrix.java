@@ -5,7 +5,7 @@ final public class Matrix
     // Number of columns.
     private final int M;
     // The 2D array used to hold the data.
-    private final double[][] data;
+    public final double[][] data;
 
     // Create an N-by-M matrix of 0's.
     public Matrix(int n, int m) 
