@@ -16,4 +16,4 @@ sleep 2
 rm -rf classes/*
 javac src/*.java
 mv src/*.class classes/
-java $CLASSPATH $OPTIONS SimpleLeader &
+java $CLASSPATH $OPTIONS VanguardLeader &

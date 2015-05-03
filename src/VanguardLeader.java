@@ -135,4 +135,10 @@ final class VanguardLeader
 		return records;
 	} // getAllRecords
 
+	public static void main(final String[] p_args)
+		throws RemoteException, NotBoundException
+	{
+		new VanguardLeader();
+	} // main
+
 } // class VanguardLeader
