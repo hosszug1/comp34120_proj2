@@ -22,8 +22,15 @@ final public class Matrix
         M = data[0].length;
         this.data = new double[N][M];
         for (int i = 0; i < N; i++)
+        {
             for (int j = 0; j < M; j++)
-                    this.data[i][j] = data[i][j];
+            {
+                this.data[i][j] = data[i][j];
+                System.out.print(this.data[i][j] + " ");
+            }
+            System.out.println();
+        }
+
     } // Matrix
 
     // Copy constructor.
@@ -182,6 +189,14 @@ final public class Matrix
         Matrix b = Matrix.random(5, 1);
         b.show();
         System.out.println();
+
+        double[][] f = new double[5][1];
+        for (int i = 0; i < f.length; i++)
+        {
+            f[i][0] = i;
+        }
+        Matrix F = new Matrix(f);
+        F.show();
     } // main
 
 } // class Matrix
