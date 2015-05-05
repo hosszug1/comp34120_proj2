@@ -3,7 +3,13 @@
 * Readme file for team Vanguard 
 **************************************
 
-I) Classes
+*** IMPORTANT NOTE *****************************************************************************************************************************************
+* The submission page requested 3 files to be submitted: 1) a compiled version of our leader class, 2) this readme and 3) an archive of the source code. 
+* Because our leader class uses 3 additional classes, their compiled versions have also been included. In order to run the leader, the usual command
+* can be used (same as for SimpleLeader), however, these 3 additional classes need to be in the same path.
+************************************************************************************************************************************************************
+
+II) Classes
 
 Besides the provided source classes and compiled platform, we have created 4 classes of our own:
 
@@ -24,7 +30,7 @@ Besides the provided source classes and compiled platform, we have created 4 cla
 	Custom class created to model mathematical matrices. Has methods such as transpose(), multiply() - both scalar and matrix-type multiplication, add(), subtract() and any other matrix type operation needed to compute the formulae used in the regression.
 
 
-II) Description of flow of the application
+III) Description of flow of the application
 
 As can be seen from the description of the classes above and the code, the flow of the logic is straightforward and can be broken up into a few steps:
 
