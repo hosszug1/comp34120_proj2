@@ -24,7 +24,7 @@ Besides the provided source classes and compiled platform, we have created 4 cla
 	Custom class created to model mathematical matrices. Has methods such as transpose(), multiply() - both scalar and matrix-type multiplication, add(), subtract() and any other matrix type operation needed to compute the formulae used in the regression.
 
 
-II) Description of main method
+II) Description of flow of the application
 
 As can be seen from the description of the classes above and the code, the flow of the logic is straightforward and can be broken up into a few steps:
 
