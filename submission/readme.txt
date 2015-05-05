@@ -6,7 +6,8 @@
 *** IMPORTANT NOTE *****************************************************************************************************************************************
 * The submission page requested 3 files to be submitted: 1) a compiled version of our leader class, 2) this readme and 3) an archive of the source code. 
 * Because our leader class uses 3 additional classes, their compiled versions have also been included. In order to run the leader, the usual command
-* can be used (same as for SimpleLeader), however, these 3 additional classes need to be in the same path.
+* can be used (same as for SimpleLeader), however, these 3 additional classes need to be in the same folder or included in the classpath. The source.zip
+* archive contains everything source-related, including the above classes. They can be recompiles using that if necessary.
 ************************************************************************************************************************************************************
 
 I) Classes

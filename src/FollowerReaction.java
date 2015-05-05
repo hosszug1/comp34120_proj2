@@ -37,7 +37,7 @@ public class FollowerReaction
 		{
 			priceLeader[i] = record.m_leaderPrice;
 			priceFollower[i] = record.m_followerPrice;
-		}
+		} // for
 
 		LinearRegression lr = new LinearRegression(numberOfDays, 1000, 0.01, priceLeader, priceFollower);
       	double[] thetas = new double[2];
