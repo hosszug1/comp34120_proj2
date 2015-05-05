@@ -91,7 +91,6 @@ final class VanguardLeader
 		// ----------------------------------------------------------------------------
 		// Regression parameter - represents the number of days to look at.
 		int numOfDays = 50;
-		//100, 50
 		FollowerReaction newReaction = new FollowerReaction(getRecords(p_date, numOfDays));
 
 		// Linear regression.

@@ -58,8 +58,8 @@ public class LinearRegression
 		double[] squaredErrors = new double[this.numberOfDays];
 
 		//estimate the follower's price using theta0 and theta1
-		hypothesis = MatrixT.multiply(x, theta);
-		squaredErrors = MatrixT.subtract(hypothesis, y);
+		hypothesis = Matrix.multiply(x, theta);
+		squaredErrors = Matrix.subtract(hypothesis, y);
 		//matrix multiplication between x and theta
 		for (int i = 0; i < this.numberOfDays; i++)
 		{
@@ -91,14 +91,14 @@ public class LinearRegression
 		double[] hypothesis = new double[this.numberOfDays];
 		double[] diffHY = new double[this.numberOfDays];
 		double[] xTransXdiffHY = new double[this.numberOfDays];
-		double[][] xTranspose = MatrixT.transpose(x);
+		double[][] xTranspose = Matrix.transpose(x);
 
 		for (int i = 0; i < numberOfIterations; i++)
 		{
-			hypothesis = MatrixT.multiply(x, theta);
-			diffHY = MatrixT.subtract(hypothesis, y);
-			xTransXdiffHY = MatrixT.multiply(xTranspose, diffHY);
-			newThetas = MatrixT.subtract(newThetas, MatrixT.multiply(xTransXdiffHY, learningRate * (1.0 / m)));
+			hypothesis = Matrix.multiply(x, theta);
+			diffHY = Matrix.subtract(hypothesis, y);
+			xTransXdiffHY = Matrix.multiply(xTranspose, diffHY);
+			newThetas = Matrix.subtract(newThetas, Matrix.multiply(xTransXdiffHY, learningRate * (1.0 / m)));
 		} // for
 
 		return newThetas;

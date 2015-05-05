@@ -1,13 +1,14 @@
-public class MatrixT {
-
-    // return a random m-by-n matrix with values between 0 and 1
-    public static double[][] random(int m, int n) {
-        double[][] C = new double[m][n];
+public class Matrix 
+{
+    // Returns a random m-by-n matrix.
+    public static double[][] random(int m, int n)
+    {
+        double[][] result = new double[m][n];
         for (int i = 0; i < m; i++)
             for (int j = 0; j < n; j++)
-                C[i][j] = Math.random();
-        return C;
-    }
+                result[i][j] = Math.random();
+        return result;
+    } // random
 
     // return n-by-n identity matrix I
     public static double[][] identity(int n) {
